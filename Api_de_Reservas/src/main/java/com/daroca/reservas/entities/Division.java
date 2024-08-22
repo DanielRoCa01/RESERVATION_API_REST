@@ -3,7 +3,7 @@ package com.daroca.reservas.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Seccion")
+@Table(name="division")
 public class Division {
 
     @Id
@@ -18,7 +18,7 @@ public class Division {
     private String description;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="idInstalacion")
+    @JoinColumn(name="facility_id")
     private Facility facility;
 
     public Division() {

@@ -3,7 +3,7 @@ package com.daroca.reservas.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,11 +17,11 @@ public class User {
     private String role;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idInstalacion")
+    @JoinColumn(name = "facility_id")
     private Facility facility;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idSeccion")
+    @JoinColumn(name = "division_id")
     private Division division;
 
     public User() {

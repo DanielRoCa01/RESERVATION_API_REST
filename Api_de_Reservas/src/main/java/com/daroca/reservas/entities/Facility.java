@@ -3,7 +3,7 @@ package com.daroca.reservas.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="instalaciones")
+@Table(name="facility")
 public class Facility {
 
     @Id
