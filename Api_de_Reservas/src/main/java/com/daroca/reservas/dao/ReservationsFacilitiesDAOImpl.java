@@ -6,6 +6,7 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,26 +20,31 @@ public class ReservationsFacilitiesDAOImpl implements ReservationsFacilitiesDAO{
         this.entityManager = entityManager;
     }
     @Override
+    @Transactional
     public void saveDivision(Division division) {
         entityManager.merge(division);
     }
 
     @Override
+    @Transactional
     public void saveFacility(Facility facility) {
         entityManager.merge(facility);
     }
 
     @Override
+    @Transactional
     public void saveReservation(Reservation reservation) {
         entityManager.merge(reservation);
     }
 
     @Override
+    @Transactional
     public void saveSpace(Space space) {
         entityManager.merge(space);
     }
 
     @Override
+    @Transactional
     public void saveUser(User user) {
         entityManager.merge(user);
     }
@@ -49,8 +55,18 @@ public class ReservationsFacilitiesDAOImpl implements ReservationsFacilitiesDAO{
     }
 
     @Override
+    public Division findDivisionById(int id) {
+        return entityManager.find(Division.class,id);
+    }
+
+    @Override
     public Facility findFacilityById(int id) {
         return entityManager.find(Facility.class,id);
+    }
+
+    @Override
+    public Space findSpaceById(int id) {
+        return entityManager.find(Space.class,id);
     }
 
     @Override
@@ -80,13 +96,13 @@ public class ReservationsFacilitiesDAOImpl implements ReservationsFacilitiesDAO{
     }
 
     @Override
-    public List<User> findListOfUsersBySearch(int id) {
-        return null;
+    public List<User> findListOfUsersBySearch(UserSearch search) {
+        return (List<User>) search.toQuery(entityManager).getResultList();
     }
 
     @Override
-    public List<Reservation> findListOfReservationsBySearch(int id) {
-        return null;
+    public List<Reservation> findListOfReservationsBySearch(ReservationSearch search) {
+        return (List<Reservation>) search.toQuery(entityManager).getResultList();
     }
 
     @Override

@@ -16,6 +16,9 @@ public class SpaceSearch implements Search{
 
     private Facility facility;
 
+    public SpaceSearch() {
+    }
+
     public SpaceSearch(LocalTime sinceTime, LocalTime toTime, LocalDate date, Facility facility) {
         this.sinceTime = sinceTime;
         this.toTime = toTime;

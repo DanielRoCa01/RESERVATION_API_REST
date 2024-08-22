@@ -18,7 +18,11 @@ public interface ReservationsFacilitiesDAO {
 
     User findUserById(int id);
 
+    Division findDivisionById(int id);
+
     Facility findFacilityById(int id);
+
+    Space findSpaceById(int id);
 
     List<Space> findListOfSpacesByFacility(Facility facility);
 
@@ -28,9 +32,9 @@ public interface ReservationsFacilitiesDAO {
 
     List<Space> findListOfFreeSpacesBySearch(SpaceSearch spaceSearch);
 
-    List<User> findListOfUsersBySearch(int id);
+    List<User> findListOfUsersBySearch(UserSearch userSearch);
 
-    List<Reservation> findListOfReservationsBySearch(int id);
+    List<Reservation> findListOfReservationsBySearch(ReservationSearch reservationSearch);
 
     void deleteDivision(Division division);
 

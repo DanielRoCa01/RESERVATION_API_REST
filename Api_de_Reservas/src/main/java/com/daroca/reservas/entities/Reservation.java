@@ -41,6 +41,16 @@ public class Reservation {
     public Reservation() {
     }
 
+    public Reservation(User user, Space space, LocalTime startingTime, LocalTime endingTime, LocalDate date, String description, String state) {
+        this.user = user;
+        this.space = space;
+        this.startingTime = startingTime;
+        this.endingTime = endingTime;
+        this.date = date;
+        this.description = description;
+        this.state = state;
+    }
+
     public User getUser() {
         return user;
     }

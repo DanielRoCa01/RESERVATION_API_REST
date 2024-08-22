@@ -23,10 +23,62 @@ public class ReservasApplication {
 
 			//findUser(reservationsFacilitiesDAO);
 			//findUsersByFacility(reservationsFacilitiesDAO);
-			findSpacesByFacility(reservationsFacilitiesDAO);
+			//findSpacesByFacility(reservationsFacilitiesDAO);
 			//findDivisionsByFacility(reservationsFacilitiesDAO);
-			findFreeSpaces(reservationsFacilitiesDAO);
+			//findFreeSpaces(reservationsFacilitiesDAO);
+			//findUsersBySearch(reservationsFacilitiesDAO);
+			//findReservationsBySearch(reservationsFacilitiesDAO);
+			createEntities(reservationsFacilitiesDAO);
 		};
+	}
+
+	private void createEntities(ReservationsFacilitiesDAO reservationsFacilitiesDAO) {
+		Facility facility=new Facility("Casa","Pequeñita");
+
+		Division division=new Division("Adultos","Los no niños",facility);
+		Division division2=new Division("Niños","Los si niños",facility);
+
+		User user =new User("Daniela","ADMINISTRADOR",facility,division);
+		User user2 =new User("Julia","USUARIO",facility,division2);
+
+		Space space=new Space("Cocina","XL",LocalTime.parse("10:00:00"),LocalTime.parse("12:00:00"),"Muy equipada",facility);
+
+		Reservation reservation=new Reservation(user,space,LocalTime.parse("10:00:00"),LocalTime.parse("10:00:00"),LocalDate.parse("2024-05-31"),"Reservola cocina","RESERVADA");
+		reservationsFacilitiesDAO.saveReservation(reservation);
+	}
+
+	private void findReservationsBySearch(ReservationsFacilitiesDAO reservationsFacilitiesDAO) {
+		int id=1;
+		System.out.println("Buscando Instalcion con id :"+id);
+		Facility facility=reservationsFacilitiesDAO.findFacilityById(1);
+		System.out.println("Buscando Usuario con id :"+id);
+		User user=reservationsFacilitiesDAO.findUserById(1);
+		System.out.println("Buscando Espacio con id :"+id);
+		Space space=reservationsFacilitiesDAO.findSpaceById(1);
+		LocalTime time1=LocalTime.parse("10:00:00");
+		LocalTime time2=LocalTime.parse("12:00:00");
+		LocalDate date=LocalDate.parse("2024-05-31");
+		String state="CANCELADA";
+		ReservationSearch reservationSearch=new ReservationSearch(null,null,time1,null,date,facility,state);
+		System.out.println("Buscando Reservas por la busqueda:"+reservationSearch);
+		System.out.println("Reservas :");
+		for(Reservation reservation:reservationsFacilitiesDAO.findListOfReservationsBySearch(reservationSearch)){
+			System.out.println(" 	"+reservation);
+		}
+	}
+
+	private void findUsersBySearch(ReservationsFacilitiesDAO reservationsFacilitiesDAO) {
+		int id=1;
+		System.out.println("Buscando Instalcion con id :"+id);
+		Facility facility=reservationsFacilitiesDAO.findFacilityById(1);
+		System.out.println("Buscando Seccion con id :"+id);
+		Division division=reservationsFacilitiesDAO.findDivisionById(1);
+		UserSearch userSearch=new UserSearch("",facility,division);
+		System.out.println("Buscando Usuarios por la busqueda:"+userSearch);
+		System.out.println("Usuarios :");
+		for(User user:reservationsFacilitiesDAO.findListOfUsersBySearch(userSearch)){
+			System.out.println(" 	"+user);
+		}
 	}
 
 	private void findFreeSpaces(ReservationsFacilitiesDAO reservationsFacilitiesDAO) {
