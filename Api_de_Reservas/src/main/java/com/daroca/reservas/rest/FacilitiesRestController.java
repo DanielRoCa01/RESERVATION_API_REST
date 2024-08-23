@@ -43,7 +43,7 @@ public class FacilitiesRestController {
         if(facility==null){
             throw new RuntimeException("Facility id not found "+ id);
         }
-        reservationsFacilitiesService.deleteSpace(id);
+        reservationsFacilitiesService.deleteFacility(id);
         return "Facility deleted with id "+ id;
     }
 

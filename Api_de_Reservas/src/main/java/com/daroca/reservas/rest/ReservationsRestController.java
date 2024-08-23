@@ -52,7 +52,7 @@ public class ReservationsRestController {
         if(reservation==null){
             throw new RuntimeException("Reservation id not found "+ id);
         }
-        reservationsFacilitiesService.deleteSpace(id);
+        reservationsFacilitiesService.deleteReservation(id);
         return "Reservation deleted with id "+ id;
     }
 }
