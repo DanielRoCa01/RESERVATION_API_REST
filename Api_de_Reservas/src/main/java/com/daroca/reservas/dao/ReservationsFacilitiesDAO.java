@@ -6,15 +6,15 @@ import java.util.List;
 
 public interface ReservationsFacilitiesDAO {
 
-    void saveDivision(Division division);
+    Division saveDivision(Division division);
 
-    void saveFacility(Facility facility);
+    Facility saveFacility(Facility facility);
 
-    void saveReservation(Reservation reservation);
+    Reservation saveReservation(Reservation reservation);
 
-    void saveSpace(Space space);
+    Space saveSpace(Space space);
 
-    void saveUser(User user);
+    User saveUser(User user);
 
     User findUserById(int id);
 

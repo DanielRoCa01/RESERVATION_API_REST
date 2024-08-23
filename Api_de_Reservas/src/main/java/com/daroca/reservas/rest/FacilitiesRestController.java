@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping ("/api")
+@RequestMapping ("/facility")
 public class FacilitiesRestController {
 
     private ReservationsFacilitiesService reservationsFacilitiesService;
@@ -17,7 +17,7 @@ public class FacilitiesRestController {
         this.reservationsFacilitiesService = reservationsFacilitiesService;
     }
 
-    @GetMapping("/facility/{id}")
+    @GetMapping("/{id}")
     public Facility getFacilityById(@PathVariable int id){
         Facility facility=reservationsFacilitiesService.findFacilityById(id);
         if(facility==null){
@@ -25,84 +25,26 @@ public class FacilitiesRestController {
         }
         return facility;
     }
-    @GetMapping("/division/{id}")
-    public Division getDivisionById(@PathVariable int id){
-        Division division=reservationsFacilitiesService.findDivisionById(id);
-        if(division==null){
-            throw new RuntimeException("division id not found "+ id);
-        }
-        return division;
+    @PostMapping("/save")
+    public Facility createFacility(@RequestBody Facility facility){
+        facility.setId(0);
+        return reservationsFacilitiesService.saveFacility(facility);
     }
-    @GetMapping("/user/{id}")
-    public User getUserById(@PathVariable int id){
-        User user=reservationsFacilitiesService.findUserById(id);
-        if(user==null){
-            throw new RuntimeException("User id not found "+ id);
-        }
-        return user;
+
+    @PutMapping("/save")
+    public Facility updateFacility(@RequestBody Facility facility){
+
+        return reservationsFacilitiesService.saveFacility(facility);
     }
-    @GetMapping("/space/{id}")
-    public Space getSpaceById(@PathVariable int id){
-        Space space=reservationsFacilitiesService.findSpaceById(id);
-        if(space==null){
-            throw new RuntimeException("Space id not found "+ id);
+
+    @DeleteMapping("/{id}")
+    public String deleteFacility(@PathVariable int id){
+        Facility facility=reservationsFacilitiesService.findFacilityById(id);
+        if(facility==null){
+            throw new RuntimeException("Facility id not found "+ id);
         }
-        return space;
+        reservationsFacilitiesService.deleteSpace(id);
+        return "Facility deleted with id "+ id;
     }
-    @GetMapping("/reservation/{id}")
-    public Reservation getReservationById(@PathVariable int id){
-        Reservation reservation=reservationsFacilitiesService.findReservationById(id);
-        if(reservation==null){
-            throw new RuntimeException("Reservation id not found "+ id);
-        }
-        return reservation;
-    }
-    @GetMapping("/search/spaces")
-    public List<Space> getReservationById(@RequestBody SpaceSearch search){
-        List<Space> spaces=reservationsFacilitiesService.findListOfFreeSpacesBySearch(search);
-        if(spaces==null){
-            throw new RuntimeException("Reservation id not found "+ search);
-        }
-        return spaces;
-    }
-    @GetMapping("/search/users")
-    public List<User> getReservationById(@RequestBody UserSearch search){
-        List<User> users=reservationsFacilitiesService.findListOfUsersBySearch(search);
-        if(users==null){
-            throw new RuntimeException("Reservation id not found "+ search);
-        }
-        return users;
-    }
-    @GetMapping("/search/reservations")
-    public List<Reservation> getReservationById(@RequestBody ReservationSearch search){
-        List<Reservation> reservations=reservationsFacilitiesService.findListOfReservationsBySearch(search);
-        if(reservations==null){
-            throw new RuntimeException("Reservation id not found "+ search);
-        }
-        return reservations;
-    }
-    @GetMapping("/facility/spaces")
-    public List<Space> getSpacesByFacility(@RequestBody Facility facility){
-        List<Space> spaces=reservationsFacilitiesService.findListOfSpacesByFacility(facility);
-        if(spaces==null){
-            throw new RuntimeException("Reservation id not found "+ facility);
-        }
-        return spaces;
-    }
-    @GetMapping("/facility/users")
-    public List<User> getUsersByFacility(@RequestBody Facility facility){
-        List<User> users=reservationsFacilitiesService.findListOfUsersByFacility(facility);
-        if(users==null){
-            throw new RuntimeException("Reservation id not found "+ facility);
-        }
-        return users;
-    }
-    @GetMapping("/facility/divisions")
-    public List<Division> getDivisionByFacilityId(@RequestBody Facility facility){
-        List<Division> divisions=reservationsFacilitiesService.findListOfDivisionsByFacility(facility);
-        if(divisions==null){
-            throw new RuntimeException("Reservation id not found "+ facility);
-        }
-        return divisions;
-    }
+
 }

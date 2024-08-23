@@ -28,7 +28,7 @@ public class Space {
     @Column(name="description")
     private String description;
 
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "facility_id")
     private Facility facility;
 
@@ -47,6 +47,9 @@ public class Space {
         this.facility = facility;
     }
 
+    public void updateTables(Space space){
+        this.reservations=space.reservations;
+    }
     public int getId() {
         return id;
     }

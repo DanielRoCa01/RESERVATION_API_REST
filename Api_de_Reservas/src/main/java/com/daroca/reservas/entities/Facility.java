@@ -23,7 +23,7 @@ public class Facility {
     @JoinColumn(name="facility_id")
     private List<User> users;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = {CascadeType.DETACH,CascadeType.REFRESH,CascadeType.REMOVE})
     @JoinColumn(name="facility_id")
     private List<Division> divisions;
 
@@ -38,7 +38,11 @@ public class Facility {
         this.name = name;
         this.description = description;
     }
-
+    public void updateTables(Facility facility){
+        this.spaces=facility.spaces;
+        this.divisions=facility.divisions;
+        this.users=facility.users;
+    }
     public int getId() {
         return id;
     }

@@ -19,7 +19,7 @@ public class Division {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name="facility_id")
     private Facility facility;
 
@@ -30,6 +30,14 @@ public class Division {
     public Division() {
     }
 
+    public void update(Division division){
+        this.name = division.name;
+        this.description = division.description;
+        this.facility = division.facility;
+    }
+    public void updateTables(Division division){
+        this.users=division.users;
+    }
     public Division(String name, String description, Facility facility) {
         this.name = name;
         this.description = description;

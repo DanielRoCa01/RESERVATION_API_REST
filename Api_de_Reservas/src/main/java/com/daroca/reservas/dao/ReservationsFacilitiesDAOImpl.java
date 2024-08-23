@@ -21,33 +21,55 @@ public class ReservationsFacilitiesDAOImpl implements ReservationsFacilitiesDAO{
     }
     @Override
 
-    public void saveDivision(Division division) {
-        entityManager.merge(division);
+    public Division saveDivision(Division division) {
+        if(division.getId()!=0) {
+            Division savedDivision = findDivisionById(division.getId());
+            division.updateTables(savedDivision);
+
+        }
+        return entityManager.merge(division);
     }
 
     @Override
-    public void saveFacility(Facility facility) {
-        entityManager.merge(facility);
+    public Facility saveFacility(Facility facility) {
+        if(facility.getId()!=0) {
+            Facility savedFacility = findFacilityById(facility.getId());
+            facility.updateTables(savedFacility);
+
+        }
+        return entityManager.merge(facility);
     }
 
     @Override
-    public void saveReservation(Reservation reservation) {
-        entityManager.merge(reservation);
+    public Reservation saveReservation(Reservation reservation) {
+
+        return entityManager.merge(reservation);
     }
 
     @Override
-    public void saveSpace(Space space) {
-        entityManager.merge(space);
+    public Space saveSpace(Space space) {
+
+        if(space.getId()!=0) {
+            Space savedSpace = findSpaceById(space.getId());
+            space.updateTables(savedSpace);
+
+        }return entityManager.merge(space);
     }
 
     @Override
 
-    public void saveUser(User user) {
-        entityManager.merge(user);
+    public User saveUser(User user) {
+
+        if(user.getId()!=0) {
+            User savedUser = findUserById(user.getId());
+            user.updateTables(savedUser);
+
+        }return entityManager.merge(user);
     }
 
     @Override
     public User findUserById(int id) {
+
         return entityManager.find(User.class,id);
     }
 

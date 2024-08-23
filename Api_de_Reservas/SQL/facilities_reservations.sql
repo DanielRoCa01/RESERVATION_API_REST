@@ -21,7 +21,7 @@ CREATE TABLE `space` (
   `opening_time` time DEFAULT NULL,
   `closing_time` time DEFAULT NULL,
   `description` mediumtext,
-  `facility_id` int NOT NULL,
+  `facility_id` int default NULL,
   PRIMARY KEY (`id`),
   KEY `FK_SPACE_FACILITY_idx` (`facility_id`),
   CONSTRAINT `FK_SPACE_FACILITY` FOREIGN KEY (`facility_id`) REFERENCES `facility` (`id`)
@@ -81,7 +81,7 @@ INSERT INTO `user` VALUES
 CREATE TABLE `reservation` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int DEFAULT NULL,
-  `space_id` int NOT NULL,
+  `space_id` int DEFAULT NULL,
   `starting_time` time DEFAULT NULL,
   `ending_time` time DEFAULT NULL,
   `date` date DEFAULT NULL,
@@ -90,8 +90,8 @@ CREATE TABLE `reservation` (
   PRIMARY KEY (`id`),
   KEY `FK_RESERVATION_SPACE_idx` (`space_id`),
   KEY `FK_RESERVATION_USER_idx` (`user_id`),
-  CONSTRAINT `FK_RESERVATION_SPACE` FOREIGN KEY (`user_id`) REFERENCES `space` (`id`),
-  CONSTRAINT `FK_RESERVATION_USER` FOREIGN KEY (`space_id`) REFERENCES `user` (`id`)
+  CONSTRAINT `FK_RESERVATION_SPACE` FOREIGN KEY (`space_id`) REFERENCES `space` (`id`),
+  CONSTRAINT `FK_RESERVATION_USER` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
   ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

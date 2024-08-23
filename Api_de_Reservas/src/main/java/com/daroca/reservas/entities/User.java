@@ -18,11 +18,11 @@ public class User {
     @Column(name = "role")
     private String role;
 
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "facility_id")
     private Facility facility;
 
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "division_id")
     private Division division;
 
@@ -30,6 +30,9 @@ public class User {
     @JoinColumn(name="user_id")
     private List<Reservation> reservations;
 
+    public void updateTables(User user){
+        this.reservations=user.reservations;
+    }
     public User() {
     }
 

@@ -19,28 +19,30 @@ public class ReservationsFacilitiesServiceImpl implements ReservationsFacilities
     }
     @Transactional
     @Override
-    public void saveDivision(Division division) {
-        reservationsFacilitiesDAO.saveDivision(division);
+    public Division saveDivision(Division division) {
+
+        return reservationsFacilitiesDAO.saveDivision(division);
     }
     @Transactional
     @Override
-    public void saveFacility(Facility facility) {
-        reservationsFacilitiesDAO.saveFacility(facility);
+    public Facility saveFacility(Facility facility) {
+
+        return reservationsFacilitiesDAO.saveFacility(facility);
     }
     @Transactional
     @Override
-    public void saveReservation(Reservation reservation) {
-        reservationsFacilitiesDAO.saveReservation(reservation);
+    public Reservation saveReservation(Reservation reservation) {
+        return reservationsFacilitiesDAO.saveReservation(reservation);
     }
     @Transactional
     @Override
-    public void saveSpace(Space space) {
-        reservationsFacilitiesDAO.saveSpace(space);
+    public Space saveSpace(Space space) {
+        return reservationsFacilitiesDAO.saveSpace(space);
     }
     @Transactional
     @Override
-    public void saveUser(User user) {
-        reservationsFacilitiesDAO.saveUser(user);
+    public User saveUser(User user) {
+        return reservationsFacilitiesDAO.saveUser(user);
     }
 
     @Override
