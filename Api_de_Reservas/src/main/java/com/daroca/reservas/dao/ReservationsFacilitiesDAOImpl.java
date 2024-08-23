@@ -20,31 +20,28 @@ public class ReservationsFacilitiesDAOImpl implements ReservationsFacilitiesDAO{
         this.entityManager = entityManager;
     }
     @Override
-    @Transactional
+
     public void saveDivision(Division division) {
         entityManager.merge(division);
     }
 
     @Override
-    @Transactional
     public void saveFacility(Facility facility) {
         entityManager.merge(facility);
     }
 
     @Override
-    @Transactional
     public void saveReservation(Reservation reservation) {
         entityManager.merge(reservation);
     }
 
     @Override
-    @Transactional
     public void saveSpace(Space space) {
         entityManager.merge(space);
     }
 
     @Override
-    @Transactional
+
     public void saveUser(User user) {
         entityManager.merge(user);
     }
@@ -110,31 +107,26 @@ public class ReservationsFacilitiesDAOImpl implements ReservationsFacilitiesDAO{
         return (List<Reservation>) search.toQuery(entityManager).getResultList();
     }
 
-    @Transactional
     @Override
     public void deleteDivision(int id) {
         entityManager.remove(findDivisionById(id));
     }
 
-    @Transactional
     @Override
     public void deleteFacility(int id) {
         entityManager.remove(findFacilityById(id));
     }
 
-    @Transactional
     @Override
     public void deleteReservation(int id) {
         entityManager.remove(findReservationById(id));
     }
 
-    @Transactional
     @Override
     public void deleteSpace(int id) {
         entityManager.remove(findSpaceById(id));
     }
 
-    @Transactional
     @Override
     public void deleteUser(int id) {
 
