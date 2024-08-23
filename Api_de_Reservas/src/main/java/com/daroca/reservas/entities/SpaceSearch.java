@@ -50,6 +50,38 @@ public class SpaceSearch implements Search{
         return query;
     }
 
+    public LocalTime getSinceTime() {
+        return sinceTime;
+    }
+
+    public void setSinceTime(LocalTime sinceTime) {
+        this.sinceTime = sinceTime;
+    }
+
+    public LocalTime getToTime() {
+        return toTime;
+    }
+
+    public void setToTime(LocalTime toTime) {
+        this.toTime = toTime;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public Facility getFacility() {
+        return facility;
+    }
+
+    public void setFacility(Facility facility) {
+        this.facility = facility;
+    }
+
     @Override
     public String toString() {
         return "SpaceSearch{" +

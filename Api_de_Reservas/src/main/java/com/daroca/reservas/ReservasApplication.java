@@ -17,21 +17,21 @@ public class ReservasApplication {
 		SpringApplication.run(ReservasApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner commandLineRunner (ReservationsFacilitiesDAO reservationsFacilitiesDAO){
-		return runner->{
-
-			//findUser(reservationsFacilitiesDAO);
-			//findUsersByFacility(reservationsFacilitiesDAO);
-			//findSpacesByFacility(reservationsFacilitiesDAO);
-			//findDivisionsByFacility(reservationsFacilitiesDAO);
-			//findFreeSpaces(reservationsFacilitiesDAO);
-			//findUsersBySearch(reservationsFacilitiesDAO);
-			//findReservationsBySearch(reservationsFacilitiesDAO);
-			//createEntities(reservationsFacilitiesDAO);
-			deleteEntities(reservationsFacilitiesDAO);
-		};
-	}
+//	@Bean
+//	public CommandLineRunner commandLineRunner (ReservationsFacilitiesDAO reservationsFacilitiesDAO){
+//		return runner->{
+//
+//			//findUser(reservationsFacilitiesDAO);
+//			//findUsersByFacility(reservationsFacilitiesDAO);
+//			//findSpacesByFacility(reservationsFacilitiesDAO);
+//			//findDivisionsByFacility(reservationsFacilitiesDAO);
+//			//findFreeSpaces(reservationsFacilitiesDAO);
+//			//findUsersBySearch(reservationsFacilitiesDAO);
+//			//findReservationsBySearch(reservationsFacilitiesDAO);
+//			//createEntities(reservationsFacilitiesDAO);
+//			//deleteEntities(reservationsFacilitiesDAO);
+//		};
+//	}
 
 	private void deleteEntities(ReservationsFacilitiesDAO reservationsFacilitiesDAO) {
 
