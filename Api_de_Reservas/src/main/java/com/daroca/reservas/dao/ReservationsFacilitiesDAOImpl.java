@@ -70,6 +70,11 @@ public class ReservationsFacilitiesDAOImpl implements ReservationsFacilitiesDAO{
     }
 
     @Override
+    public Reservation findReservationById(int id) {
+        return entityManager.find(Reservation.class,id);
+    }
+
+    @Override
     public List<Space> findListOfSpacesByFacility(Facility facility) {
         TypedQuery<Space> query =entityManager.createQuery("FROM Space s where s.facility= :facility",Space.class);
         query.setParameter("facility",facility);
@@ -105,28 +110,35 @@ public class ReservationsFacilitiesDAOImpl implements ReservationsFacilitiesDAO{
         return (List<Reservation>) search.toQuery(entityManager).getResultList();
     }
 
+    @Transactional
     @Override
-    public void deleteDivision(Division division) {
-
+    public void deleteDivision(int id) {
+        entityManager.remove(findDivisionById(id));
     }
 
+    @Transactional
     @Override
-    public void deleteFacility(Facility facility) {
-
+    public void deleteFacility(int id) {
+        entityManager.remove(findFacilityById(id));
     }
 
+    @Transactional
     @Override
-    public void deleteReservation(Reservation reservation) {
-
+    public void deleteReservation(int id) {
+        entityManager.remove(findReservationById(id));
     }
 
+    @Transactional
     @Override
-    public void deleteSpace(Space space) {
-
+    public void deleteSpace(int id) {
+        entityManager.remove(findSpaceById(id));
     }
 
+    @Transactional
     @Override
-    public void deleteUser(User user) {
+    public void deleteUser(int id) {
 
+
+        entityManager.remove(findUserById(id));
     }
 }

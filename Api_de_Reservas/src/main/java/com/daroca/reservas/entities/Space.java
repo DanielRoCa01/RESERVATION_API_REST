@@ -3,6 +3,7 @@ package com.daroca.reservas.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name="space")
@@ -27,10 +28,13 @@ public class Space {
     @Column(name="description")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "facility_id")
     private Facility facility;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="space_id")
+    private List<Reservation> reservations;
     public Space() {
     }
 

@@ -2,6 +2,8 @@ package com.daroca.reservas.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -16,13 +18,17 @@ public class User {
     @Column(name = "role")
     private String role;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "facility_id")
     private Facility facility;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "division_id")
     private Division division;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id")
+    private List<Reservation> reservations;
 
     public User() {
     }

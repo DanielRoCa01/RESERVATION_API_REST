@@ -28,8 +28,20 @@ public class ReservasApplication {
 			//findFreeSpaces(reservationsFacilitiesDAO);
 			//findUsersBySearch(reservationsFacilitiesDAO);
 			//findReservationsBySearch(reservationsFacilitiesDAO);
-			createEntities(reservationsFacilitiesDAO);
+			//createEntities(reservationsFacilitiesDAO);
+			deleteEntities(reservationsFacilitiesDAO);
 		};
+	}
+
+	private void deleteEntities(ReservationsFacilitiesDAO reservationsFacilitiesDAO) {
+
+		//reservationsFacilitiesDAO.deleteReservation(1);
+		//reservationsFacilitiesDAO.deleteUser(1);
+
+		//reservationsFacilitiesDAO.deleteDivision(2);
+		//reservationsFacilitiesDAO.deleteSpace(2);
+
+		reservationsFacilitiesDAO.deleteFacility(1);
 	}
 
 	private void createEntities(ReservationsFacilitiesDAO reservationsFacilitiesDAO) {

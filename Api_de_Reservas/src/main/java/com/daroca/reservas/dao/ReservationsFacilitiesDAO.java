@@ -24,6 +24,8 @@ public interface ReservationsFacilitiesDAO {
 
     Space findSpaceById(int id);
 
+    Reservation findReservationById(int id);
+
     List<Space> findListOfSpacesByFacility(Facility facility);
 
     List<User> findListOfUsersByFacility(Facility facility);
@@ -36,15 +38,15 @@ public interface ReservationsFacilitiesDAO {
 
     List<Reservation> findListOfReservationsBySearch(ReservationSearch reservationSearch);
 
-    void deleteDivision(Division division);
+    void deleteDivision(int id);
 
-    void deleteFacility(Facility facility);
+    void deleteFacility(int id);
 
-    void deleteReservation(Reservation reservation);
+    void deleteReservation(int id);
 
-    void deleteSpace(Space space);
+    void deleteSpace(int id);
 
-    void deleteUser(User user);
+    void deleteUser(int id);
 
 
 }
