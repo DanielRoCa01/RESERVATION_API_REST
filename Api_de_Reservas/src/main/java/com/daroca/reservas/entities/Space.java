@@ -3,46 +3,53 @@ package com.daroca.reservas.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
-@Table(name="espacios")
+@Table(name="space")
 public class Space {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
-    @Column(name="nombre")
+    @Column(name="name")
     private String name;
 
-    @Column(name="tamaño")
+    @Column(name="size")
     private String size;
 
-    @Column(name="horaApertura")
-    private LocalTime openTime;
+    @Column(name="opening_time")
+    private LocalTime openningTime;
 
-    @Column(name="horaCierre")
-    private LocalTime closeTime;
+    @Column(name="closing_time")
+    private LocalTime closingTime;
 
-    @Column(name="descripcion")
+    @Column(name="description")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idInstalacion")
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name = "facility_id")
     private Facility facility;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="space_id")
+    private List<Reservation> reservations;
     public Space() {
     }
 
     public Space(String name, String size, LocalTime openTime, LocalTime closeTime, String description, Facility facility) {
         this.name = name;
         this.size = size;
-        this.openTime = openTime;
-        this.closeTime = closeTime;
+        this.openningTime = openTime;
+        this.closingTime = closeTime;
         this.description = description;
         this.facility = facility;
     }
 
+    public void updateTables(Space space){
+        this.reservations=space.reservations;
+    }
     public int getId() {
         return id;
     }
@@ -67,20 +74,20 @@ public class Space {
         this.size = size;
     }
 
-    public LocalTime getOpenTime() {
-        return openTime;
+    public LocalTime getOpenningTime() {
+        return openningTime;
     }
 
-    public void setOpenTime(LocalTime openTime) {
-        this.openTime = openTime;
+    public void setOpenningTime(LocalTime openningTime) {
+        this.openningTime = openningTime;
     }
 
-    public LocalTime getCloseTime() {
-        return closeTime;
+    public LocalTime getClosingTime() {
+        return closingTime;
     }
 
-    public void setCloseTime(LocalTime closeTime) {
-        this.closeTime = closeTime;
+    public void setClosingTime(LocalTime closingTime) {
+        this.closingTime = closingTime;
     }
 
     public String getDescription() {
@@ -105,8 +112,8 @@ public class Space {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", size='" + size + '\'' +
-                ", openTime=" + openTime +
-                ", closeTime=" + closeTime +
+                ", openTime=" + openningTime +
+                ", closeTime=" + closingTime +
                 ", description='" + description + '\'' +
                 ", facility=" + facility +
                 '}';
